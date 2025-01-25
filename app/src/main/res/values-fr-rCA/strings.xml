@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Flux d\'actualités BBC 1.0</string>
+    <string name="nav_header_title">Bienvenue</string>
+    <string name="navigation_drawer_open">Tiroir de navigation ouvert</string>
+    <string name="navigation_drawer_close">Tiroir de navigation fermé</string>
+    <string name="favorites">Favoris</string>
+    <string name="shared_pref_example">Exemple de Préférence Partagée</string>
+    <string name="title">Titre</string>
+    <string name="publication_date">Date de Publication</string>
+    <string name="description">Description</string>
+    <string name="link">Lien</string>
+    <string name="close">Fermer</string>
+    <string name="add_to_favorites">Ajouter aux Favoris</string>
+    <string name="bbc_news_feed_v1_0">Flux d\'actualités BBC v1.0</string>
+    <string name="home">Accueil</string>
+    <string name="last_accessed_date">Date de Dernier Accès</string>
+    <string name="exit">Quitter</string>
+    <string name="help">Aide</string>
+    <string name="home_help">Aide Accueil</string>
+    <string name="favorites_help">Aide Favoris</string>
+    <string name="last_accessed_date_help">Aide Date de Dernier Accès</string>
+    <string name="item_1">Élément 1</string>
+    <string name="item_2">Élément 2</string>
+    <string name="item_3">Élément 3</string>
+    <string name="home_help_message">Sélectionnez un article pour afficher les détails, l\'ajouter aux favoris ou ouvrir l\'article complet dans un navigateur.</string>
+    <string name="favorites_help_message">Sélectionnez un article favori pour afficher les détails, le retirer des favoris ou ouvrir l\'article complet dans un navigateur.</string>
+    <string name="last_accessed_date_help_message">Cela affiche la date du dernier accès à l\'application. Cette date est enregistrée en tant que préférence partagée.</string>
+    <string name="exit_toast">Merci d\'avoir utilisé cette application. Au revoir!</string>
+    <string name="remove_from_favorites">Retirer des Favoris</string>
+    <string name="removed_from_favorites">Article retiré des favoris</string>
+    <string name="error_removing_item_from_favorites">Erreur lors de la suppression de l\'article des favoris</string>
+</resources>

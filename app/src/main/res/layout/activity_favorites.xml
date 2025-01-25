@@ -12,13 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-    <!-- Toolbar -->
+        <!-- Toolbar -->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            android:title="@string/favorites"
             android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginTop="56dp"
-            android:background="@android:color/black"
+            android:background="?attr/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,29 +27,32 @@
 
         <!-- ListView -->
         <ListView
-            android:id="@+id/list_view"
+            android:id="@+id/fav_list_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:background="@android:color/white"
             android:divider="@android:color/darker_gray"
             android:dividerHeight="1dp"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_container"
+            app:layout_constraintBottom_toTopOf="@+id/fav_fragment_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-             />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+
         <!-- FrameLayout for fragment container -->
         <FrameLayout
-            android:id="@+id/fragment_container"
+            android:id="@+id/fav_fragment_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            android:visibility="gone"
             android:background="@android:color/white"
-            app:layout_constraintTop_toBottomOf="@+id/list_view"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fav_list_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -63,4 +67,3 @@
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
-
