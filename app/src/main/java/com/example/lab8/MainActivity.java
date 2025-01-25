@@ -3,7 +3,9 @@ package com.example.lab8;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
@@ -25,6 +27,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.SharedPreferences;
+import android.widget.ProgressBar;
 
 /**
  * Main activity that handles displaying news headlines from an RSS feed and managing the last accessed time.
@@ -55,6 +58,8 @@ public class MainActivity extends BaseActivity {
         // Set toolbar title
         setToolbarTitle(getString(R.string.bbc_news_feed_v1_0));
 
+
+
         //initialize listview and adapter
         listView = findViewById(R.id.list_view);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, headlines);
@@ -64,8 +69,17 @@ public class MainActivity extends BaseActivity {
         // Save and display last accessed time
         saveLastAccessedTime();
 
-        //get headlines from BBC using AsyncTask
-        new FetchHeadLinesTask().execute("https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml");
+        // Button to start fetching RSS feed
+        Button startButton = findViewById(R.id.startButton);
+        startButton.setOnClickListener(v -> {
+
+            ProgressBar progressBar = findViewById(R.id.progressBar);
+            progressBar.setVisibility(View.VISIBLE); // Show the progress bar
+            // Start the AsyncTask to fetch the headlines
+            new FetchHeadLinesTask(progressBar).execute("https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml");
+        });
+
+
 
         //listener to display news item details in fragment
         listView.setOnItemClickListener((parent, view, position, id) -> {
@@ -137,8 +151,26 @@ public class MainActivity extends BaseActivity {
      * AsyncTask to fetch news headlines from the provided RSS feed URL.
      * Parses the RSS feed and returns a list of NewsItem objects.
      */
-    private class FetchHeadLinesTask extends AsyncTask<String, Void, ArrayList<NewsItem>> {
+    private class FetchHeadLinesTask extends AsyncTask<String, Integer, ArrayList<NewsItem>> {
 
+        private ProgressBar progressBar;
+
+        // Constructor to pass the progress bar
+        public FetchHeadLinesTask(ProgressBar progressBar) {
+            this.progressBar = progressBar;
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            super.onPreExecute();
+            //show progress bar before starting the task
+            if (progressBar != null) {
+
+                progressBar.setProgress(0);
+            }
+
+        }
 
         /**
          * Performs the background task of fetching and parsing the RSS feed.
@@ -178,6 +210,8 @@ public class MainActivity extends BaseActivity {
                 int eventType = parser.getEventType();
                 boolean insideItem = false;
                 String title = null, description = null, link = null, pubDate = null;
+                int itemCount = 0;
+
 
                 //process xml file/rss feed
                 while (eventType != XmlPullParser.END_DOCUMENT) {
@@ -213,6 +247,7 @@ public class MainActivity extends BaseActivity {
                                         //instantiate and add news item to arraylist
                                         boolean favorite = false;
                                         int id = 0;
+                                        itemCount++;
                                         result.add(new NewsItem(title,description,link,pubDate,favorite,id));
 
                                     }
@@ -221,13 +256,24 @@ public class MainActivity extends BaseActivity {
                                     description = null;
                                     link = null;
 
+
+
                                 }
                                     break;
 
                     }
 
                     eventType = parser.next();
+
+                   // int iCount = itemCount;
+                    // Publish progress after processing each item
+                    if (itemCount % 5 == 0) { // Update progress every 5 items (you can adjust this number)
+
+                        //int iCount = itemCount;
+                        publishProgress(itemCount);
+                    }
                 }
+
                 inputStream.close();
 
             } catch (Exception e) {
@@ -238,6 +284,17 @@ public class MainActivity extends BaseActivity {
             return result;
         }
 
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            //super.onProgressUpdate(values);
+           if (progressBar != null && values.length > 0) {
+
+               progressBar.setProgress(values[0]);
+
+           }
+        }
+
+
         /**
          * Updates the UI with the fetched news headlines after the background task is complete.
          *
@@ -245,6 +302,13 @@ public class MainActivity extends BaseActivity {
          */
         @Override
         protected void onPostExecute(ArrayList<NewsItem> result) {
+
+            if (progressBar != null) {
+                progressBar.setVisibility(View.GONE);
+                Button startButton = findViewById(R.id.startButton);
+                startButton.setVisibility(View.GONE);
+            }
+
             if (result != null && !result.isEmpty()) {
                 headlines.clear();
                 headlines.addAll(result);
