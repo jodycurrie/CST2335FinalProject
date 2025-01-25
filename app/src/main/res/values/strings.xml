@@ -1,6 +1,32 @@
 <resources>
-    <string name="app_name">Lab8</string>
+    <string name="app_name">BBC News Feed 1.0</string>
     <string name="nav_header_title">Welcome</string>
     <string name="navigation_drawer_open">Navigation drawer opened</string>"
-    <string name="navigation_drawer_close">Navigation drawer closed</string>"
+    <string name="navigation_drawer_close">Navigation drawer closed</string>
+    <string name="favorites">Favorites</string>
+    <string name="shared_pref_example">Shared Pref Example</string>
+    <string name="title">Title</string>
+    <string name="publication_date">Publication Date</string>
+    <string name="description">Description</string>
+    <string name="link">Link</string>
+    <string name="close">Close</string>
+    <string name="add_to_favorites">Add To Favorites</string>
+    <string name="bbc_news_feed_v1_0">BBC News Feed v1.0</string>
+    <string name="home">Home</string>
+    <string name="last_accessed_date">Last Accessed Date</string>
+    <string name="exit">Exit</string>
+    <string name="help">Help</string>
+    <string name="home_help">Home Help</string>
+    <string name="favorites_help">Favorites Help</string>
+    <string name="last_accessed_date_help">Last Accessed Date Help</string>
+    <string name="item_1">Item 1</string>
+    <string name="item_2">Item 2</string>
+    <string name="item_3">Item 3</string>
+    <string name="home_help_message">"Select a news item to view details, add to favorites or open full article in a browser."</string>
+    <string name="favorites_help_message">"Select a favorite news items to view details, remove from favorites or open full article in a browser."</string>
+    <string name="last_accessed_date_help_message">"This shows last accessed date of the app. This date is stored as a shared preference."</string>
+    <string name="exit_toast">Thank you for using this app. Goodbye!</string>
+    <string name="remove_from_favorites">Remove From Favorites</string>
+    <string name="removed_from_favorites">Item removed from favorites</string>
+    <string name="error_removing_item_from_favorites">Error removing item from favorites</string>
 </resources>

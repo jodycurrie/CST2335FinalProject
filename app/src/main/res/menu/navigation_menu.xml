@@ -3,14 +3,41 @@
 
     <item
         android:id="@+id/nav_home"
-        android:title="Home" />
+        android:title="@string/home"
+        android:icon="@drawable/home" />
 
     <item
-        android:id="@+id/nav_dad_joke"
-        android:title="Dad Joke" />
+        android:id="@+id/nav_favorites"
+        android:title="@string/favorites"
+        android:icon="@drawable/favoritesgold" />
+
+    <item
+        android:id="@+id/nav_shared_pref"
+        android:title="@string/last_accessed_date"
+        android:icon="@drawable/calender" />
 
     <item
         android:id="@+id/nav_exit"
-        android:title="Exit" />
+        android:title="@string/exit" />
+
+    <!--help menu-->
+    <item android:title="@string/help">
+        <menu>
+            <item
+                android:id="@+id/home_help"
+                android:title="@string/home_help" />
+
+            <item
+                android:id="@+id/favorites_help"
+                android:title="@string/favorites_help" />
+
+            <item
+                android:id="@+id/shared_pref_help"
+                android:title="@string/last_accessed_date_help" />
+
+
+        </menu>
+    </item>
+
 
 </menu>
